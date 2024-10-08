@@ -212,8 +212,8 @@ const CodeBox = () => {
                 <p>import os</p>
                 <p>import numpy as np</p>
                 <p></p>
-                <p># Program to print</p>
-                <p>print("Hello World")</p>
+                <p>Program to print</p>
+                <p>print(&quot;Hello World&quot;)</p>
               </div>
             )}
           </div>
