@@ -224,10 +224,9 @@ const CodeBox = ({ id }) => {
 const App = () => {
   return (
     <div className="h-screen flex justify-center items-center relative">
-      {/* First draggable CodeBox */}
+      
       <CodeBox id="codebox1" />
 
-      {/* Second draggable CodeBox */}
       <CodeBox id="codebox2" />
     </div>
   );
