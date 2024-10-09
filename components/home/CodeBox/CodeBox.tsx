@@ -3,6 +3,9 @@
 
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import { format } from 'date-fns';
 
 const CodeBox = () => {
   const [isClosed, setIsClosed] = useState(false);
@@ -11,6 +14,7 @@ const CodeBox = () => {
   const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState('');
   const [terminalHistory, setTerminalHistory] = useState([]);
+  const [date, setDate] = useState(new Date());
 
   const handleCloseClick = () => {
     setIsClosed(true);
@@ -128,7 +132,21 @@ const CodeBox = () => {
                   }}
                 >
                   <p className="m-0" style={{ color: 'white', fontSize: '11px', alignSelf: 'center' }}>
-                    aboutme.txt
+                    aboutme.txt x
+                  </p>
+                </div>
+                <div
+                  onClick={() => changePage('main.py')}
+                  style={{
+                    backgroundColor: currentPage === 'main.py' ? 'rgb(66, 66, 66)' : 'transparent',
+                    padding: '3px 6px',
+                    borderRadius: '4px',
+                    display: 'flex',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <p className="m-0" style={{ color: 'white', fontSize: '11px', alignSelf: 'center' }}>
+                    main.py x
                   </p>
                 </div>
               </div>
@@ -154,17 +172,14 @@ const CodeBox = () => {
                     {terminalHistory.map((item, index) => (
                       <div key={index}>
                         <div className="text-green-600">
-                          {isTerminalActive ? 'arnab@portfolio ~ ' : ''}
-                          {isTerminalActive ? '$' : ''}
-                          &nbsp;
+                          {isTerminalActive ? 'arnab@portfolio ~ ' : ''}{isTerminalActive ? '$' : ''}&nbsp;
                           <span className="text-white">{item.input}</span>
                         </div>
                         <div>{item.output}</div>
                       </div>
                     ))}
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
-                      <p className="text-green-600">arnab@portfolio ~ $</p>
-                      &nbsp;
+                      <p className="text-green-600">arnab@portfolio ~ $</p>&nbsp;
                       <div>
                         <input
                           style={inputStyles}
@@ -192,9 +207,25 @@ const CodeBox = () => {
                 <p>Excited to contribute to Hacktoberfest.</p>
               </div>
             )}
+            {currentPage === 'main.py' && (
+              <div>
+                <p>import os</p>
+                <p>import numpy as np</p>
+                <p></p>
+                <p>Program to print</p>
+                <p>print(&quot;Hello World&quot;)</p>
+              </div>
+            )}
           </div>
         </div>
       </Draggable>
+      
+      <div className="fixed bottom-10 right-10 calendar-container">
+        <Calendar onChange={setDate} value={date} />
+        <div className="text-center mt-4 text-white">
+          <p>{format(date, 'EEEE, MMMM do, yyyy')}</p>
+        </div>
+      </div>
     </div>
   );
 };
