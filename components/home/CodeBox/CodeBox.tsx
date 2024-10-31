@@ -45,6 +45,8 @@ const CodeBox: React.FC = () => {
       window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
     } else if (terminalInput === 'jesus') {
       window.location.href === "https://www.youtube.com/watch?v=LsGcIkevyHM";
+    } else if (terminalInput === 'new window') {
+      window.location.href === "https://mock-os-iota.vercel.app/";
     } else {
       output = 'Command not recognized';
     }
